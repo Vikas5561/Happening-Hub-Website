@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <link rel="stylesheet" href="Reg-form-engagement.css"> <!-- Link to your CSS file -->
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+        }
+    
+        #registrationInfo {
+          display: none;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #fff;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        #registrationInfo h2 {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+    
+        #registrationInfo table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+    
+        #registrationInfo td, #registrationInfo th {
+          padding: 10px;
+          border: 1px solid #ddd;
+          text-align: left;
+        }
+    
+        #registrationInfo td:first-child, #registrationInfo th:first-child {
+          width: 150px;
+        }
+    
+        #registrationInfo button {
+          display: block;
+          margin: 20px auto;
+          padding: 10px 20px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+    
+        #registrationInfo button:hover {
+          background-color: #0056b3;
+        }
+      </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">Event Registration</h1>
+        <form id="registrationForm" action="pre-wedding.html" method="POST"> <!-- Replace "submit_registration.php" with your actual form submission endpoint -->
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Mobile Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="location">Location of Event:</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Date of Event:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label>Select Events:</label>
+
+
+                <div>
+                    <input type="checkbox" id="preWedding" name="event" value="Pre-Wedding">
+                    <label for="preWedding">Pre-Wedding - $1000</label>
+                </div>
+            
+                <!-- Add more event checkboxes as needed -->
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="totalPrice"></label>
+                <span id="totalPrice"></span>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div id="registrationInfo">
+        <h2>Registration Information</h2>
+        <table>
+          <tr>
+            <th>Content</th>
+            <th>Information</th>
+          </tr>
+          <tr>
+            <td>Name:</td>
+            <td id="displayedName"></td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td id="displayedEmail"></td>
+          </tr>
+          <tr>
+            <td>Address:</td>
+            <td id="displayedAddress"></td>
+          </tr>
+          <tr>
+            <td>phone:</td>
+            <td id="displayedphone"></td>
+          </tr>
+          <tr>
+            <td>Location of Event:</td>
+            <td id="displayedLocation"></td>
+          </tr>
+          <tr>
+            <td>Date of Event:</td>
+            <td id="displayedDate"></td>
+          </tr>
+          <tr>
+            <td>Selected Event:</td>
+            <td id="displayedEvent"></td>
+          </tr>
+          <tr>
+            <td>Message:</td>
+            <td id="displayedMessage"></td>
+          </tr>
+          <!-- Add other rows for each form field -->
+        </table>
+        <button id="editButton">Edit</button>
+        <button id="confirmButton">Confirm Submission</button>
+      </div>
+    
+      <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent the default form submission behavior
+          
+          // Get form data
+          var formData = new FormData(this);
+    
+          // Display registration information
+          displayRegistrationInfo(formData);
+        });
+    
+        function displayRegistrationInfo(formData) {
+          // Display the registration information section
+          document.getElementById('registrationInfo').style.display = 'block';
+    
+          // Display form data in the registration information section
+          document.getElementById('displayedName').textContent = formData.get('name');
+      document.getElementById('displayedEmail').textContent = formData.get('email');
+      document.getElementById('displayedAddress').textContent = formData.get('address');
+      document.getElementById('displayedphone').textContent = formData.get('phone');
+      document.getElementById('displayedLocation').textContent = formData.get('location');
+      document.getElementById('displayedDate').textContent = formData.get('date');
+      document.getElementById('displayedEvent').textContent = formData.get('event');
+      document.getElementById('displayedMessage').textContent = formData.get('message');
+
+          // Display other form data as needed
+        }
+        // JavaScript code for calculating total price based on selected options
+document.addEventListener('DOMContentLoaded', function() {
+    var checkboxes = document.querySelectorAll('input[name="eventOption"]');
+    var totalPriceDisplay = document.getElementById('totalPrice');
+    var totalPrice = 0;
+
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            // Parse the value of the checkbox option to a float
+            var optionPrice = parseFloat(this.value);
+
+            if (this.checked) {
+                // Checkbox is checked, add its value to total price
+                totalPrice += optionPrice;
+            } else {
+                // Checkbox is unchecked, subtract its value from total price
+                totalPrice;
+            }
+
+            // Update total price display
+            totalPriceDisplay.textContent = '$' + totalPrice.toFixed(2); // Display total price with 2 decimal places
+        });
+    });
+});
+
+    
+        // Button event listeners
+        document.getElementById('editButton').addEventListener('click', function() {
+          // Hide the registration information section
+          document.getElementById('registrationInfo').style.display = 'none';
+        });
+    
+        document.getElementById('confirmButton').addEventListener('click', function() {
+          // Perform actions to confirm submission (e.g., submit data to server)
+          alert('Registration completed Your Request is Send to the Admin.Please wait for the confirmation.'); // You can replace this with your confirmation logic
+        });
+      </script>
+</body>
+</html>

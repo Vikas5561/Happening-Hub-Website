@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System - Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div id="signupPageContent">
+        <h2 id="h1">Sign Up</h2>
+        <div id="signupFormContainer" class="form-container">
+            <form id="signupForm" action="#" method="post">
+                <div class="form-group">
+                    <label for="fullName">Name:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="number">Mobile No:</label>
+                    <input type="number" id="number" name="number" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm password">Confirm Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" id="signupButton">Sign Up</button>
+            </form>
+            <div id="loginLinkContainer">
+                <a href="login.html">Already have an account? Login here</a>
+            </div>
+        </div>
+    </div>
+    <script src="signup.js"></script>
+</body>
+</html>

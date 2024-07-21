@@ -1,0 +1,122 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('./images/event-mng-bg.jpg');
+  background-size: cover;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.logo h1 {
+  margin: 1;
+}
+
+nav {
+  flex-grow: 1; /* Fill remaining space */
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Center items horizontally */
+}
+
+nav ul.main-nav li {
+  margin-right: 20px;
+}
+
+nav ul.main-nav li:last-child {
+  margin-right: 0;
+}
+
+nav ul.main-nav li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user a {
+  margin-left: 20px;
+}
+
+.user img {
+  width: 30px;
+  height: 30px;
+}
+
+.content {
+  text-align: center;
+}
+
+.intro {
+  margin-top: 100px;
+}
+
+.intro h1 {
+  font-size: 46px;
+  color: #f6f8f4;
+}
+
+.intro h3 {
+  font-size: 30px;
+  color: #bb8d8d;
+}
+.intro h2 {
+  font-size: 36px;
+  color: #c5e511;
+}
+
+.intro p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.get-started-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.get-started-btn:hover {
+  background-color: #0056b3;
+}
+
+
+
